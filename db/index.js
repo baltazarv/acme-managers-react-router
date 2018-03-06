@@ -6,6 +6,7 @@ const Employee = db.define('employee', {
 });
 
 Employee.belongsTo(Employee, { as: 'manager' });
+Employee.hasMany(Employee, { as: 'manages', foreignKey: 'managerId' });
 
 const sync = () => {
   return db.sync({ force: true });

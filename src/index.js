@@ -1,13 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Main from './react/Main';
-import { Router, Route, hashHistory, IndexRedirect } from 'react-router';
-import Employees from './react/Employees';
+import { render } from 'react-dom';
+import App from './App';
 
-ReactDOM.render(
-  <Router history={ hashHistory }>
-    <Route path="/" component={ Main } />
-    <Route path="/employees" component={ Employees } />
-  </Router>,
+render(
+  <App />,
   document.getElementById('app')
 );
