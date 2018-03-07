@@ -1,16 +1,23 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 
-export default class Employees extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      // employees: []
-    };
-  }
-  render() {
-    return (
-      <hr />
-    );
-  }
-}
+const Employees = ({ employees }) => {
+  return (
+    <ul>
+      { employees.map( employee => {
+        return  (
+          <li key={ employee.id }>
+            { employee.name }
+            {
+              employee.manager ? (
+                <span> ({ employee.manager.name })</span>
+              ) : ( null )
+            }
+          </li>
+        );
+      })}
+    </ul>
+  );
+};
+
+export default Employees;

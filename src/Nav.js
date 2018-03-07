@@ -1,13 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Nav = ({ employees, managers, path }) => (
+const Nav = ({ employeeCount, managerCount, path }) => (
     <ul>
       <li>
-        <Link to="/">Employees</Link>
+        {
+          path === '/' ? (
+            <span>Employees - { employeeCount }</span>
+          ) : (
+            <Link to="/">Employees - { employeeCount }</Link>
+          )
+        }
       </li>
       <li>
-        <Link to="/managers">Managers</Link>
+        {
+          path === '/managers' ? (
+            <span>Managers - { managerCount }</span>
+          ) : (
+            <Link to="/managers">Managers - { managerCount }</Link>
+          )
+        }
       </li>
     </ul>
 );

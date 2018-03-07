@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { HashRouter as Router } from 'react-router-dom';
+import { HashRouter as Router, Route } from 'react-router-dom';
 import Nav from './Nav';
-// import Employees from './Employees';
+import Employees from './Employees';
 
 class App extends Component {
   constructor() {
@@ -24,30 +24,27 @@ class App extends Component {
         return memo;
       }, {});
       const managers = Object.keys(managerMap).map( key => managerMap[key] )
-      // console.log(managers);
       this.setState({ managers, employees });
     });
   }
 
   render() {
-    console.log(this.state);
-    // const { employees } = this.state;
+    const { employees, managers } = this.state;
     return (
       <Router>
-        <Nav />
+        <div>
+          <Route render={(props) => {
+            console.log('router goodies', props);
+            return <hr />;
+          }} />
+          <Route render={ ({ location }) => <Nav employeeCount={ employees.length } managerCount={ managers.length } path={location.pathname} /> } />
+          <Route path="/" exact render={ () => <Employees employees={ employees } /> } />
+          <Route path="/managers" exact render={ () => <Employees employees={ managers } /> } />
+        </div>
       </Router>
     );
   }
 }
-
-// const App = (props) => {
-//   return (
-//     <div>
-//     <Nav />
-//     <Employees />
-//     </div>
-//   );
-// };
 
 export default App;
 
